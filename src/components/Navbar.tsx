@@ -8,7 +8,6 @@ const navLinks = [
   { to: "/portfolio", label: "Portfolio" },
   { to: "/order", label: "Order" },
   { to: "/contact", label: "Contact" },
-  { to: "/data", label: "Data Konsultasi" },
 ];
 
 export default function Navbar() {
