@@ -154,12 +154,12 @@ export default function Home() {
       </div>
 
       {/* ===== PROMO OFFER ===== */}
-      <section className="py-5" style={{ background: "#f9f5ee" }}>
+      <section className="py-5" style={{ background: "#ffff" }}>
         <div className="container">
           <div className="row g-4">
             {[
               { label: "Promo Desain", disc: "Gratis Konsultasi", color: "#c9a84c", img: "/r4.webp" },
-              { label: "Paket Renovasi", disc: "Harga Spesial", color: "#1a1a1a", img: "/r5.webp" },
+              { label: "Paket Renovasi", disc: "Harga Spesial", color: "#c9a84c", img: "/r5.webp" },
             ].map(({ label, disc, color, img }, i) => (
               <div className={`col-md-6 fade-up delay-${i + 1}`} key={label}>
                 <div
