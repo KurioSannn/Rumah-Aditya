@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
@@ -13,10 +13,37 @@ const navLinks = [
 export default function Navbar() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY < 10) {
+        setVisible(true);
+      } else if (currentY < lastScrollY.current) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-white border-bottom px-4 py-3">
+      <nav
+        className="navbar navbar-expand-lg bg-white border-bottom px-4 py-3"
+        style={{
+          transform: visible ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 0.3s ease",
+          position: "sticky",
+          top: 0,
+          zIndex: 1030,
+        }}
+      >
         <div className="container-fluid px-0">
 
           {/* Logo */}
