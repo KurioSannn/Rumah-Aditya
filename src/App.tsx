@@ -7,7 +7,6 @@ import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import AI from "./pages/AI";
 import Order from "./pages/Order";
-import Data from "./pages/Data";
 import Contact from "./pages/Contact";
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/ai" element={<AI />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/data" element={<Data />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />

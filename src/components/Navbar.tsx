@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
@@ -5,13 +6,14 @@ const navLinks = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
-//   { to: "/ai", label: "AI Estimator" },
   { to: "/order", label: "Order" },
   { to: "/contact", label: "Contact" },
+  { to: "/data", label: "Data Konsultasi" },
 ];
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -44,16 +46,12 @@ export default function Navbar() {
 
           {/* Kanan */}
           <div className="d-flex align-items-center gap-3">
-            <span className="fw-bold d-none d-md-block" style={{ fontSize: "0.875rem" }}>
-              
-            </span>
             <Link to="/order" className="btn btn-dark btn-sm d-none d-lg-block">
               Konsultasi
             </Link>
             <button
               className="btn border-0 d-lg-none fs-5"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasMenu"
+              onClick={() => setOpen(true)}
               aria-label="Buka menu"
             >
               ☰
@@ -63,35 +61,66 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Offcanvas Mobile — di luar <nav> */}
-      <div className="offcanvas offcanvas-end" id="offcanvasMenu" tabIndex={-1}>
-        <div className="offcanvas-header border-bottom">
-          <h5 className="offcanvas-title fw-bold text-uppercase" style={{ letterSpacing: ".1rem" }}>
-            BuildSpace
+      {/* Overlay */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.4)",
+            zIndex: 1040,
+          }}
+        />
+      )}
+
+      {/* Offcanvas Mobile */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          width: "280px",
+          height: "100vh",
+          background: "#fff",
+          zIndex: 1050,
+          transform: open ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.3s ease",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {/* Header */}
+        <div className="d-flex justify-content-between align-items-center px-4 py-3 border-bottom">
+          <h5 className="fw-bold text-uppercase mb-0" style={{ letterSpacing: ".1rem" }}>
+            RumahAditya
           </h5>
-          <button className="btn-close" data-bs-dismiss="offcanvas" aria-label="Tutup" />
+          <button
+            className="btn border-0 fs-5"
+            onClick={() => setOpen(false)}
+            aria-label="Tutup"
+          >
+            ✕
+          </button>
         </div>
-        <div className="offcanvas-body">
+
+        {/* Body */}
+        <div className="px-4 py-3 flex-grow-1 overflow-auto">
           <ul className="navbar-nav gap-1">
             {navLinks.map(({ to, label }) => (
               <li key={to}>
                 <Link
                   className={`nav-link py-2 ${pathname === to ? "fw-semibold text-dark" : ""}`}
                   to={to}
-                  data-bs-dismiss="offcanvas"
+                  onClick={() => setOpen(false)}
                 >
                   {label}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link className="nav-link py-2" to="/data" data-bs-dismiss="offcanvas">
-                Data Konsultasi
-              </Link>
-            </li>
           </ul>
           <hr />
-          <p className="fw-bold mb-0">+62 812-xxxx</p>
+          <p className="fw-bold mb-0">+62 856-4645-8409</p>
         </div>
       </div>
     </>

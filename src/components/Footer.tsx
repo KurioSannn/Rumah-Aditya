@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Kolom 1 — Brand */}
           <div className="col-md-4">
             <span className="d-flex flex-column text-uppercase fw-bold lh-sm mb-3">
-              <span style={{ fontSize: "1.1rem", letterSpacing: ".12rem" }}>BuildSpace</span>
+              <span style={{ fontSize: "1.1rem", letterSpacing: ".12rem" }}>RumahAditya</span>
               <span style={{ fontSize: "0.75rem", letterSpacing: ".08rem", color: "#c9a84c" }}>Architect</span>
             </span>
             <p className="text-white-50 small">
